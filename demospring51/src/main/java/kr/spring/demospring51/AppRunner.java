@@ -18,5 +18,7 @@ public class AppRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         System.out.println(proto);
         System.out.println(single.getProto());
+        System.out.println(single.getProto());
+        System.out.println(single.getProto());
     }
 }
