@@ -30,6 +30,7 @@ public class Event {
     public String toString() {
         return "Event{" +
                 "id=" + id +
+                ", title='" + title + '\'' +
                 '}';
     }
 }
