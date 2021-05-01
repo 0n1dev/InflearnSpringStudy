@@ -7,26 +7,33 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 
 @Component
 public class AppRunner implements ApplicationRunner {
 
-    @Autowired
-    ResourceLoader resourceLoader;
-
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println(resourceLoader.getClass());
+        Event event = new Event();
+        event.setTitle("dd");
+        EventValidator eventValidator = new EventValidator();
 
-        Resource resource = resourceLoader.getResource("test.txt");
-        System.out.println(resource.getClass());
+        Errors errors = new BeanPropertyBindingResult(event, "event");
 
-        System.out.println(resource.exists());
-        System.out.println(resource.getDescription());
-        System.out.println(Files.readString(Path.of(resource.getURI())));
+        eventValidator.validate(event, errors);
+
+        System.out.println(errors.hasErrors());
+
+        errors.getAllErrors().forEach(e -> {
+            System.out.println("========= ERROR CODE =========");
+            Arrays.stream(e.getCodes()).forEach(System.out::println);
+            System.out.println(e.getDefaultMessage());
+        });
     }
 }
