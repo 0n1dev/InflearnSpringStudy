@@ -6,13 +6,17 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookServiceRunner implements ApplicationRunner {
+public class AppRunner implements ApplicationRunner {
 
     @Autowired
-    BookService bookService;
+    Proto proto;
+
+    @Autowired
+    Single single;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        bookService.printBookRepository();
+        System.out.println(proto);
+        System.out.println(single.getProto());
     }
 }
