@@ -3,14 +3,25 @@ package kr.spring.demospring51;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @SpringBootApplication
-@PropertySource("classpath:/app.properties") // app.properties를 사용하겠다.
 public class Demospring51Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Demospring51Application.class, args);
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        var messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames("classpath:/messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setCacheSeconds(3);
+        return messageSource;
     }
 }
