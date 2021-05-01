@@ -9,6 +9,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,10 +19,16 @@ import java.util.Arrays;
 @Component
 public class AppRunner implements ApplicationRunner {
 
+    @Autowired
+    Validator validator;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        System.out.println(validator.getClass());
+
         Event event = new Event();
-        event.setTitle("dd");
+        event.setLimit(-1);
+        event.setEmail("efafawef");
         EventValidator eventValidator = new EventValidator();
 
         Errors errors = new BeanPropertyBindingResult(event, "event");
