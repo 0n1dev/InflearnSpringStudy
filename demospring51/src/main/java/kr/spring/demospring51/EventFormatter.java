@@ -1,6 +1,7 @@
 package kr.spring.demospring51;
 
 import org.springframework.format.Formatter;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.util.Locale;
