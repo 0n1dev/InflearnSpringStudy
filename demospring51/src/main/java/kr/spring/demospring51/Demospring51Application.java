@@ -17,13 +17,4 @@ public class Demospring51Application {
     public static void main(String[] args) {
         SpringApplication.run(Demospring51Application.class, args);
     }
-
-    @Bean
-    public MessageSource messageSource() {
-        var messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:/messages");
-        messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setCacheSeconds(3);
-        return messageSource;
-    }
 }
