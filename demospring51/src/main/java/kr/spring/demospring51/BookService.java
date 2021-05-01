@@ -10,11 +10,11 @@ import java.util.List;
 public class BookService {
 
     @Autowired
-    List<BookRepository> bookRepository;
+    BookRepository myBookRepository; // 필드이름이 동일해도 주입가능 (추천 X)
 
     public void printBookRepository() {
-        this.bookRepository.forEach(System.out::println);
-//        System.out.println(bookRepository.getClass());
+//        this.bookRepository.forEach(System.out::println);
+        System.out.println(myBookRepository.getClass());
     }
 
 //    @Autowired
